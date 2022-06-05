@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: demo
+  h2.console.enabled: true
+  web.resources.static-locations: classpath:/web/
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Replace with the domain of your Auth0 tenant.
+          # Note the trailing slash is important!
+          issuer-uri: https://dev-ctcnhqpj.us.auth0.com/
+
+debug: false
+
+server:
+  port: 3000
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: DEBUG
+  file:
+    name: auth0stripe.log
+    path: /app/demo/logs/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+auth0:
+  # Replace with the API Identifier for your Auth0 API.
+  audience: https://demo/api
+
+stripe:
+  keys:
+    public: "pk_test_51JqEMqByMn82gACkpvwBJfyPlAqXn0td5exI3VNGrVVdxxPsQfVKwds1R8ca0h7YUoJQexUnbDJYKU5YGgvqfmdk00oe14Cwnd"
+    private: "sk_test_51JqEMqByMn82gACkPbjsdPsp8Xu8lsHo8y0oOo0d7l5g6CU8rgvFgoK5XgjUgDkuDJMiIhUJSC3fCYpe8wF6P3XY00GSDWLsMA"
